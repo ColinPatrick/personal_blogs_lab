@@ -1,0 +1,16 @@
+$theme-colors: (
+    'primary': #413c69 //Covalence Blue!  :D
+);
+
+body {
+    background-color: #a7c5eb !important;
+}
+
+.navi-color {
+    background-color: #a7c5eb;
+}
+
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+
+//#0091ea #e5ecf3 a7c5eb
