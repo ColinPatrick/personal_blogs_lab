@@ -6,3 +6,5 @@ dist/
 public/js/app.js
 
 .env
+
+src/server/config/development.ts
