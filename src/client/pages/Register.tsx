@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { json, User } from '../utils/api';
 import { NewUser } from '../utils/types';
+import { RouteComponentProps } from 'react-router-dom';
 
 
 const Register: React.FC<RegisterProps> = props => {
@@ -20,9 +21,7 @@ const Register: React.FC<RegisterProps> = props => {
 
         if(User.userid == null) {
             json('/auth/register', 'POST', newUser);
-            // history.push is not working
-            // this is the main issue I still need to fix - the account creation works, but the page stays the same after
-            // history.push('/');
+            props.history.push('/');
         } else {
             alert('You are currently signed in. Please sign out to create a new account.');
         }
@@ -52,6 +51,6 @@ const Register: React.FC<RegisterProps> = props => {
     );
 }
 
-interface RegisterProps {}
+interface RegisterProps extends RouteComponentProps {}
 
 export default Register

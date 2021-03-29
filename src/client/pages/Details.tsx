@@ -10,7 +10,7 @@ const Details: React.FC<DetailsProps> = (props) => {
     // states are used to keep track of the blog stored from the blogid and its tags
     const [blog, setBlog] = React.useState<IBlog>(null);
     const [blogtags, setBlogtags] = React.useState<ITag[]>([]);
-    const [adminLink, setAdminLink] = React.useState<string>('')
+    const [adminLink, setAdminLink] = React.useState<string>('');
     // when the page loads, fetch requests are made to the API routes to get the specific blog and its tags
     React.useEffect(() => {
         (async () => {
