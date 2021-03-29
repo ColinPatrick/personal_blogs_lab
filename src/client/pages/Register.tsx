@@ -21,7 +21,7 @@ const Register: React.FC<RegisterProps> = props => {
 
         if(User.userid == null) {
             json('/auth/register', 'POST', newUser);
-            props.history.push('/');
+            props.history.push('/login');
         } else {
             alert('You are currently signed in. Please sign out to create a new account.');
         }
