@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import db from '../db';
+import db from '../../db';
 
 const router = Router();
 //get request that calls all the blogtags, which connect the blogs and their respective tags within the database from the blogtags table

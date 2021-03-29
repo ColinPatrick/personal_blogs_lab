@@ -17,4 +17,4 @@ export default {
     insert,
     update,
     remove
-}
+} 

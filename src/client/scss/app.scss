@@ -1,13 +1,20 @@
 $theme-colors: (
-    'primary': #413c69 //Covalence Blue!  :D
+    'primary': #431285 //Covalence Blue!  :D
 );
 
 body {
-    background-color: #a7c5eb !important;
+    background-color: #e6ebf3 !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+hr.divide-line {
+    border-top: 5px solid #431285;
+    border-radius: 5px;
+    width: 60%;
 }
 
 .navi-color {
-    background-color: #a7c5eb;
+    background-color: #431285;
 }
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';

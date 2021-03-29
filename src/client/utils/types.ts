@@ -12,3 +12,9 @@ export interface ITag {
     name: string;
     _created?: Date;
 }
+
+export interface NewUser {
+    name: string;
+    email: string;
+    password: string;
+}

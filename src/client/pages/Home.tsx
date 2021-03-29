@@ -19,7 +19,7 @@ const Home: React.FC<HomeProps> = props => {
         <main className="container">
             <section className="row">
                 <div className="col-12 d-flex justify-content-center">
-                    <h1 className="font-weight-bold text-primary mb-2">BLOGS</h1>
+                    <h4 className="font-weight-bold text-primary mb-2">Blog List</h4>
                 </div>
                 {blogs.map(blog => (
                     <PreviewCard key={`blog-preview-${blog.id}`} blog={blog} />

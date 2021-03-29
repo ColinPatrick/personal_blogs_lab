@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import db from '../db';
+import db from '../../db';
 
 const router = Router();
 // get request that calls all of the tags from the db

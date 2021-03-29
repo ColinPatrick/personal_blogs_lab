@@ -6,7 +6,7 @@ import DB from '../db';
 
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
-
+// local strategy for passport outlined for use
 passport.use(new LocalStrategy.Strategy({
     usernameField: 'email',
     session: false

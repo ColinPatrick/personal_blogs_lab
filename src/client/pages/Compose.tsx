@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { json, User } from '../utils/api';
 import { useHistory } from 'react-router-dom';
 import { ITag } from '../utils/types';
 // Compose page uses an FC to allow the user to create a new blog
@@ -13,6 +14,9 @@ const Compose: React.FC<ComposeProps> = props => {
     // when the page loads, a fetch request is made to the API to get the tag options
     // these are stored in the 'tags' state
     React.useEffect(() => {
+        if (User.userid == null) {
+            history.push('/login');
+        }
         (async () => {
             const res = await fetch('/api/tags');
             const tags = await res.json();
@@ -22,14 +26,15 @@ const Compose: React.FC<ComposeProps> = props => {
     // method that uses the api/blogs route to post the new blog to the db when the submit btn is clicked
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        const res = await fetch('/api/blogs', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ title, content })
-        });
-        const blogResult = await res.json();
+
+        let blog: { authorid: number, title: string, content: string } = {
+            authorid: User.userid,
+            title: title,
+            content: content 
+        }
+
+        let result = await json('/api/blogs', 'POST', blog);
+        const blogResult = result;
         // if a tag is chosen, another post request is made to add that tags to the db
         if(tagSelect !== '0') {
             const nextRes = await fetch('/api/blogtags', {

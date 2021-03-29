@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-
+// mysql user info hidden using dotenv
 export default {
     mysql: {
         user: process.env.DB_USER,

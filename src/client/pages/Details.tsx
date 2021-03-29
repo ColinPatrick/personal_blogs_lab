@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as moment from 'moment';
 import type { IBlog, ITag } from '../utils/types';
+import { User } from '../utils/api';
 
 const Details: React.FC<DetailsProps> = (props) => {
     // the blog ID is stored as a param 
@@ -9,6 +10,7 @@ const Details: React.FC<DetailsProps> = (props) => {
     // states are used to keep track of the blog stored from the blogid and its tags
     const [blog, setBlog] = React.useState<IBlog>(null);
     const [blogtags, setBlogtags] = React.useState<ITag[]>([]);
+    const [adminLink, setAdminLink] = React.useState<string>('')
     // when the page loads, fetch requests are made to the API routes to get the specific blog and its tags
     React.useEffect(() => {
         (async () => {
@@ -19,7 +21,13 @@ const Details: React.FC<DetailsProps> = (props) => {
             // the blog and its tags are stored in their respective states
             setBlog(blog);
             setBlogtags(blogtags);
-        })();
+            console.log(User.role);
+            if (User.userid == blog.authorid || User.role == 'admin') {
+                setAdminLink('m-2');
+            } else {
+                setAdminLink('d-none');
+            };
+        })();        
     }, []);
     // since the main render is dependent on the fetch requests, an temporary render is created
     // a page will not load if there isn't something to render immediately
@@ -48,7 +56,7 @@ const Details: React.FC<DetailsProps> = (props) => {
                             ))}</div>
                             <div className="d-flex justify-content-around">
                                 <Link className="btn btn-outline-secondary m-2" to='/'>Back to Blogs</Link>
-                                <Link className="btn btn-outline-secondary m-2" to={`/admin/${blogid}`}>Admin Options</Link>
+                                <Link className={`btn btn-outline-secondary ${adminLink}`} to={`/admin/${blogid}`}>Admin Options</Link>
                             </div>
                         </div>
                     </article>

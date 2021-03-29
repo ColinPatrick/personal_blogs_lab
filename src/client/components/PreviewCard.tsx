@@ -7,7 +7,7 @@ import type { IBlog } from '../utils/types';
 const PreviewCard: React.FC<PreviewCardProps> = ({ blog }) => {
     return (
         <div className="col-md-4">
-            <article className="card my-2 rounded shadow">
+            <article className="card my-2 rounded-lg shadow">
                 <div className="card-body">
                     <h4 className="card-title">{blog.title}</h4>
                     <p className="card-text text-muted mb-2">{blog.name}</p>

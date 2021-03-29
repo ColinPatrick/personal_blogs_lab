@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { json, User } from '../utils/api';
 import { useHistory, Link, useParams } from 'react-router-dom';
 // Admin page allows the user to edit a blog and its tags, or delete the blog
 const Admin: React.FC<AdminProps> = props => {
@@ -23,14 +24,7 @@ const Admin: React.FC<AdminProps> = props => {
     // when the blog data is updated in the api/db, the user is pushed to that blog's details page
     const handleSave = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        const res = await fetch(`/api/blogs/${blogid}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ title, content })
-        });
-        const result = await res.json();
+        let result = await json(`/api/blogs/${blogid}`, 'Put', { title, content });
         history.push(`/details/${blogid}`);
     }
     // a method is created to handle the event of the delete btn being clicked
@@ -43,10 +37,8 @@ const Admin: React.FC<AdminProps> = props => {
         const res = await fetch(`/api/blogtags/${blogid}`, {
             method: 'DELETE'
         });
-        const nextRes = await fetch(`/api/blogs/${blogid}`, {
-            method: 'DELETE'
-        });
-        if (res.ok && nextRes.ok) {
+        let nextRes = await json(`/api/blogs/${blogid}`, 'DELETE');
+        if (res.ok && nextRes) {
             history.push('/');
         }
     }
