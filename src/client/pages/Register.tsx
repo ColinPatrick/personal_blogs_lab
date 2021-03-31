@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { json, User } from '../utils/api';
 import { NewUser } from '../utils/types';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 
 const Register: React.FC<RegisterProps> = props => {
@@ -21,6 +21,7 @@ const Register: React.FC<RegisterProps> = props => {
 
         if(User.userid == null) {
             json('/auth/register', 'POST', newUser);
+            alert('Account has been created! Please sign in.');
             props.history.push('/login');
         } else {
             alert('You are currently signed in. Please sign out to create a new account.');
@@ -42,7 +43,7 @@ const Register: React.FC<RegisterProps> = props => {
                             <label htmlFor="email" className="my-2">Password</label>
                             <input type="password" value={password} className="form-control form-control-lg my-2" id="pass-input" onChange={e => setPassword(e.target.value)} />
                             <div className="col-md-12 d-flex justify-content-end">
-                                <button className="btn btn-primary my-3" onClick={ handleRegister }>Sign In</button>
+                                <button className="btn btn-primary my-3" onClick={ handleRegister }>Sign Up</button>
                             </div>
                         </form>
                     </div>
@@ -53,4 +54,4 @@ const Register: React.FC<RegisterProps> = props => {
 
 interface RegisterProps extends RouteComponentProps {}
 
-export default Register
+export default withRouter (Register)
